@@ -1,42 +1,15 @@
-.shadow__btn {
-  padding: 10px 20px;
-  border: none;
-  font-size: 17px;
-  color: #fff;
-  border-radius: 7px;
-  letter-spacing: 4px;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: 0.5s;
-  transition-property: box-shadow;
+h1 {
+  text-align: center;
+  margin: 25px
 }
 
-.shadow__btn {
-  background: rgb(0,140,255);
-  box-shadow: 0 0 25px rgb(0,140,255);
+#text_area {
+    display: block;
+    margin: 0 auto;
 }
-
-.shadow__btn:hover {
-  box-shadow: 0 0 5px rgb(0,140,255),
-              0 0 25px rgb(0,140,255),
-              0 0 50px rgb(0,140,255),
-              0 0 100px rgb(0,140,255);
-              
-}
-/* Input styling */ 
-.input {
- border: 2px solid #e8e8e8;
- padding: 15px;
- border-radius: 10px;
- background-color: #212121;
- font-size: small;
- font-weight: bold;
- text-align: center;
-}
-
-.input:focus {
- outline-color: white;
- background-color: #212121;
- color: #e8e8e8;
- box-shadow: 5px 5px #888888;
+textarea::placeholder {
+  font-size: 20px;     
+  color: rgb(170, 110, 163);             
+  text-align: center;     
+  font-style: italic;     
 }
