@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acii-Art-Web</title>
-    <link rel="icon" href="icon.ico">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <h1>Ascii-art-web</h1>
     <form method="post" action="/print">
-        <textarea id="text_area" rows="20" cols="50" placeholder="Enter something"></textarea><br>
-        <input type="submit" value="generate" for="text_area">
+        <textarea id="text_area" name="text" rows="20" cols="50" placeholder="Enter something"></textarea><br>
+        <input type="submit" value="generate" >
     </form>
 </body>
 </html>
