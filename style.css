@@ -13,3 +13,12 @@ textarea::placeholder {
   text-align: center;     
   font-style: italic;     
 }
+input[type="submit"] {
+  position:relative;
+  left:1200px;
+  font-size:25px;
+  color:white;
+  background-color: rgb(150, 150, 255);
+  border-radius: 10px;
+  border-color: black;
+}

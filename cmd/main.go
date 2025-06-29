@@ -2,28 +2,15 @@ package main
 
 import (
 	"fmt"
-	"os"
-
-	printing "ascii-art/art"
-	validators "ascii-art/validation"
+	"net/http"
 )
 
 func main() {
-	args := os.Args[1:]
+	http.HandleFunc("/print", printHandleFunc)
 
-	if len(args) != 1 {
-		fmt.Println("usage: go run ./cmd <string>")
-		return
-	}
+	http.ListenAndServe(":8080", nil)
+}
 
-	input := args[0]
-	if !validators.BannerValidity() {
-		fmt.Println("Banner file was changed")
-		return
-	}
-	if !validators.AsciiCharValidation(input) {
-		return
-	}
-
-	printing.Processing(input)
+func printHandleFunc(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "hello world!")
 }

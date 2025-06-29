@@ -9,8 +9,9 @@
 </head>
 <body>
     <h1>Ascii-art-web</h1>
-    <form method="post">
-        <textarea id="text_area" rows="20" cols="50" placeholder="Enter something"></textarea>
+    <form method="post" action="/print">
+        <textarea id="text_area" rows="20" cols="50" placeholder="Enter something"></textarea><br>
+        <input type="submit" value="generate" for="text_area">
     </form>
 </body>
 </html>
