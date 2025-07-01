@@ -39,8 +39,8 @@ func BannerLoader(path string) (map[rune][]string, error) {
 	return asciiMap, nil
 }
 
-func Processing(text string) {
-	charMap, err := BannerLoader("banners/standard.txt")
+func Processing(text, name string) {
+	charMap, err := BannerLoader("banners/" + name + ".txt")
 	if err != nil {
 		return
 	}
