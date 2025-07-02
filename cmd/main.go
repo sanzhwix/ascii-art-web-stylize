@@ -17,13 +17,14 @@ func printHandleFunc(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		text := r.FormValue("text")
 
-		tpl.ExecuteTemplate(w, "templates/print.html", text)
+		tpl.ExecuteTemplate(w, "print.html", text)
 	}
 }
 
 func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
-	tpl, _ = template.ParseFiles("templates/index.html")
+
+	tpl, _ = template.ParseGlob("templates/*.html")
 	http.HandleFunc("/", htmlHandle)
 
 	http.HandleFunc("/print", printHandleFunc)
