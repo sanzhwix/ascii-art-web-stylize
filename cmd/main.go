@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 )
@@ -18,16 +17,16 @@ func printHandleFunc(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		text := r.FormValue("text")
 
-		fmt.Fprintf(w, "You submitted: %s", text)
+		tpl.ExecuteTemplate(w, "templates/print.html", text)
 	}
 }
 
 func main() {
-	tpl, _ = template.ParseFiles("../index.html")
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+	tpl, _ = template.ParseFiles("templates/index.html")
 	http.HandleFunc("/", htmlHandle)
 
 	http.HandleFunc("/print", printHandleFunc)
 
-	// Start the server
 	http.ListenAndServe(":8080", nil)
 }
