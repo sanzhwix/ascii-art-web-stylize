@@ -8,6 +8,14 @@
 </head>
 <body>
     <h1>Ascii-art-web</h1>
+    <div>
+    <input type="checkbox" class="standard">
+    <label>Standard</label>
+    <input type="checkbox">
+    <label>Shadow</label>
+    <input type="checkbox">
+    <label>Thinkertoy</label>
+    </div>
     <form method="post" action="/print">
         <textarea id="text_area" name="text" rows="5" cols="50" placeholder="Enter something"></textarea><br>
         <input type="submit" value="generate">
@@ -15,8 +23,8 @@
 
     {{if .Full}}
     <div class="ascii_printer">
-        <h2>Your output is:</h2>
-        <pre>{{.Output}}</pre>
+        <h2 class="output_text">Your output is:</h2>
+        <pre class="output">{{.Output}}</pre>
     </div>
     {{end}}
 

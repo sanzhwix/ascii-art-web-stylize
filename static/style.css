@@ -22,6 +22,14 @@ input[type="submit"] {
   border-radius: 10px;
   border-color: black;
 }
-.ascii_printer {
-  background-color: rgb(116, 116, 116);
+.standard {
+  text-align:center;
+}
+.output_text {
+  text-align:center;
+}
+
+.output{
+  background-color: rgb(182, 182, 182);
+  text-align: center;
 }
