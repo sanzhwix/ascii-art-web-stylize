@@ -14,11 +14,14 @@ textarea::placeholder {
   font-style: italic;     
 }
 input[type="submit"] {
-  position:relative;
-  left:1200px;
+  display:block;
+  margin:20px auto;
   font-size:25px;
-  color:white;
+  color:rgb(11, 11, 11);
   background-color: rgb(150, 150, 255);
   border-radius: 10px;
   border-color: black;
+}
+.ascii_printer {
+  background-color: rgb(116, 116, 116);
 }

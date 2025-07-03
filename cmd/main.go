@@ -2,12 +2,18 @@ package main
 
 import (
 	print "ascii-art/art"
+	"bytes"
 	"fmt"
 	"html/template"
 	"net/http"
 )
 
 var tpl *template.Template
+
+type Data struct {
+	Output string
+	Full   bool
+}
 
 func htmlHandle(w http.ResponseWriter, r *http.Request) {
 	tpl.Execute(w, nil)
@@ -18,7 +24,10 @@ func printHandleFunc(w http.ResponseWriter, r *http.Request) {
 
 		r.ParseForm()
 		text := r.FormValue("text")
-		print.Processing(text, w)
+		var buf bytes.Buffer
+		print.Processing(text, &buf)
+		res := Data{Output: buf.String(), Full: true}
+		tpl.Execute(w, res)
 	}
 }
 

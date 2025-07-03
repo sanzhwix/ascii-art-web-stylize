@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acii-Art-Web</title>
+    <title>Ascii-Art-Web</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <h1>Ascii-art-web</h1>
     <form method="post" action="/print">
-        <textarea id="text_area" name="text" rows="20" cols="50" placeholder="Enter something"></textarea><br>
-        <input type="submit" value="generate" >
+        <textarea id="text_area" name="text" rows="5" cols="50" placeholder="Enter something"></textarea><br>
+        <input type="submit" value="generate">
     </form>
-    {{template "Print"}}
+
+    {{if .Full}}
+    <div class="ascii_printer">
+        <h2>Your output is:</h2>
+        <pre>{{.Output}}</pre>
+    </div>
+    {{end}}
+
 </body>
 </html>
+
