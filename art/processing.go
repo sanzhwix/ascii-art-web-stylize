@@ -3,6 +3,7 @@ package printing
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 )
@@ -39,7 +40,7 @@ func BannerLoader(path string) (map[rune][]string, error) {
 	return asciiMap, nil
 }
 
-func Processing(text string) {
+func Processing(text string, w io.Writer) {
 	charMap, err := BannerLoader("banners/standard.txt")
 	if err != nil {
 		return
@@ -56,7 +57,7 @@ func Processing(text string) {
 	for i, line := range inputLines {
 		if line == "" {
 			if i > 0 || words {
-				fmt.Print("\n")
+				fmt.Fprintf(w, "\n")
 			}
 			continue
 		}
@@ -73,14 +74,14 @@ func Processing(text string) {
 		}
 
 		for j, l := range outputLines {
-			fmt.Print(l)
+			fmt.Fprintf(w, l)
 			if j < len(outputLines)-1 {
-				fmt.Print("\n")
+				fmt.Fprintf(w, "\n")
 			}
 		}
 
 		if i < len(inputLines) {
-			fmt.Print("\n")
+			fmt.Fprintf(w, "\n")
 		}
 	}
 }

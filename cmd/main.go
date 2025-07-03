@@ -1,6 +1,8 @@
 package main
 
 import (
+	print "ascii-art/art"
+	"fmt"
 	"html/template"
 	"net/http"
 )
@@ -11,23 +13,25 @@ func htmlHandle(w http.ResponseWriter, r *http.Request) {
 	tpl.Execute(w, nil)
 }
 
-// func printHandleFunc(w http.ResponseWriter, r *http.Request) {
-// 	if r.Method == "POST" {
+func printHandleFunc(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
 
-// 		r.ParseForm()
-// 		text := r.FormValue("text")
-
-// 		tpl.ExecuteTemplate(w, "print.html", text)
-// 	}
-// }
+		r.ParseForm()
+		text := r.FormValue("text")
+		print.Processing(text, w)
+	}
+}
 
 func main() {
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+	mux := http.NewServeMux()
+
+	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	tpl, _ = template.ParseGlob("templates/*.html")
-	http.HandleFunc("/", htmlHandle)
+	mux.HandleFunc("/", htmlHandle)
 
-	// http.HandleFunc("/print", printHandleFunc)
+	mux.HandleFunc("/print", printHandleFunc)
 
-	http.ListenAndServe(":8080", nil)
+	fmt.Println("Server is running here: http://localhost:8080")
+	http.ListenAndServe(":8080", mux)
 }
