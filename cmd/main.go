@@ -1,44 +1,63 @@
 package main
 
 import (
-	print "ascii-art/art"
 	"bytes"
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
+
+	print "ascii-art/art"
 )
 
-var tpl *template.Template
+var (
+	tpl *template.Template
+	mux *http.ServeMux
+)
 
 type Data struct {
 	Output string
 	Full   bool
 }
 
-func htmlHandle(w http.ResponseWriter, r *http.Request) {
-	tpl.Execute(w, nil)
+func mainHandler(w http.ResponseWriter, r *http.Request) {
+	tpl.ExecuteTemplate(w, "index.html", nil)
 }
 
 func printHandleFunc(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "POST" {
-
+	if r.Method == http.MethodPost {
 		r.ParseForm()
+		font := r.FormValue("type")
 		text := r.FormValue("text")
+		if font == "" || text == "" {
+			w.WriteHeader(http.StatusBadRequest)
+			tpl.ExecuteTemplate(w, "400.html", nil)
+			return
+		}
 		var buf bytes.Buffer
-		print.Processing(text, &buf)
+		print.Processing(text, font, &buf)
 		res := Data{Output: buf.String(), Full: true}
 		tpl.Execute(w, res)
 	}
 }
 
 func main() {
-	mux := http.NewServeMux()
+	var err error
+
+	tpl, err = template.ParseFiles(
+		"templates/index.html",
+		"templates/400.html",
+		"templates/404.html",
+	)
+	if err != nil {
+		log.Fatal("Template parsing error:", err)
+	}
+
+	mux = http.NewServeMux()
 
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
-	tpl, _ = template.ParseGlob("templates/*.html")
-	mux.HandleFunc("/", htmlHandle)
-
+	mux.HandleFunc("/", mainHandler)
 	mux.HandleFunc("/print", printHandleFunc)
 
 	fmt.Println("Server is running here: http://localhost:8080")
