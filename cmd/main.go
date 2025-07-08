@@ -43,6 +43,10 @@ func printHandleFunc(w http.ResponseWriter, r *http.Request) {
 			RenderErrorPage(w, "Error 500 Internal server error"+font+"was changed!", http.StatusInternalServerError)
 			return
 		}
+		if len(text) > 100000 {
+			RenderErrorPage(w, "Request is too large!", http.StatusBadRequest)
+			return
+		}
 
 		if font == "" || text == "" {
 			RenderErrorPage(w, "Error 400 Bad request", http.StatusBadRequest)
