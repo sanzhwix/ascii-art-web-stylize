@@ -31,24 +31,36 @@ func printHandleFunc(w http.ResponseWriter, r *http.Request) {
 		text := r.FormValue("text")
 		if font == "" || text == "" {
 			w.WriteHeader(http.StatusBadRequest)
-			tpl.ExecuteTemplate(w, "400.html", nil)
+			RenderErrorPage()
 			return
 		}
 		var buf bytes.Buffer
 		print.Processing(text, font, &buf)
 		res := Data{Output: buf.String(), Full: true}
 		tpl.Execute(w, res)
+	} else {
+		RenderErrorPage()
 	}
+}
+
+// function to use only one html error page
+type ErrorType struct {
+	Msg string
+}
+
+// If r.URL.PATH != "/" {
+//}
+
+func RenderErrorPage(w http.ResponseWriter, msg string, errCode int) {
+	w.WriteHeader(errCode)
+	err := ErrorType{Msg: msg}
+	tpl.Execute(w, err)
 }
 
 func main() {
 	var err error
 
-	tpl, err = template.ParseFiles(
-		"templates/index.html",
-		"templates/400.html",
-		"templates/404.html",
-	)
+	tpl, err = template.ParseFiles("templates/index.html", "errorPage.html")
 	if err != nil {
 		log.Fatal("Template parsing error:", err)
 	}
