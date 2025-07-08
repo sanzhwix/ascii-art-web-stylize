@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	print "ascii-art/art"
+	validators "ascii-art/validation"
 )
 
 var (
@@ -21,6 +22,10 @@ type Data struct {
 }
 
 func mainHandler(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/" {
+		RenderErrorPage(w, "Error 404 Page not found", http.StatusNotFound)
+		return
+	}
 	tpl.ExecuteTemplate(w, "index.html", nil)
 }
 
@@ -29,9 +34,18 @@ func printHandleFunc(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		font := r.FormValue("type")
 		text := r.FormValue("text")
+
+		if validators.AsciiCharValidation(text) {
+			RenderErrorPage(w, "Error 404: Only strandard Ascii charecters are allowed!", http.StatusBadRequest)
+			return
+		}
+		if validators.BannerValidity(font) {
+			RenderErrorPage(w, "Error 500 Internal server error"+font+"was changed!", http.StatusInternalServerError)
+			return
+		}
+
 		if font == "" || text == "" {
-			w.WriteHeader(http.StatusBadRequest)
-			RenderErrorPage()
+			RenderErrorPage(w, "Error 400 Bad request", http.StatusBadRequest)
 			return
 		}
 		var buf bytes.Buffer
@@ -39,28 +53,34 @@ func printHandleFunc(w http.ResponseWriter, r *http.Request) {
 		res := Data{Output: buf.String(), Full: true}
 		tpl.Execute(w, res)
 	} else {
-		RenderErrorPage()
+		RenderErrorPage(w, "Error 405 Method not allowed", http.StatusMethodNotAllowed)
+		return
 	}
 }
 
-// function to use only one html error page
 type ErrorType struct {
 	Msg string
 }
 
-// If r.URL.PATH != "/" {
-//}
-
-func RenderErrorPage(w http.ResponseWriter, msg string, errCode int) {
-	w.WriteHeader(errCode)
-	err := ErrorType{Msg: msg}
-	tpl.Execute(w, err)
+func RenderErrorPage(w http.ResponseWriter, msg string, statusCode int) {
+	t, err := template.ParseFiles("templates/errorPage.html")
+	if err != nil {
+		fmt.Println("Error parsing error page")
+		return
+	}
+	w.WriteHeader(statusCode)
+	data := ErrorType{Msg: msg}
+	err = t.Execute(w, data)
+	if err != nil {
+		fmt.Println("Error with executing error page html")
+		return
+	}
 }
 
 func main() {
 	var err error
 
-	tpl, err = template.ParseFiles("templates/index.html", "errorPage.html")
+	tpl, err = template.ParseFiles("templates/index.html")
 	if err != nil {
 		log.Fatal("Template parsing error:", err)
 	}
