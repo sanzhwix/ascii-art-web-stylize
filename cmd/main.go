@@ -8,7 +8,6 @@ import (
 	"net/http"
 
 	print "ascii-art/art"
-	validators "ascii-art/validation"
 )
 
 var (
@@ -17,6 +16,7 @@ var (
 )
 
 type Data struct {
+	Input  string
 	Output string
 	Full   bool
 }
@@ -35,14 +35,14 @@ func printHandleFunc(w http.ResponseWriter, r *http.Request) {
 		font := r.FormValue("type")
 		text := r.FormValue("text")
 
-		if validators.AsciiCharValidation(text) {
-			RenderErrorPage(w, "Error 404: Only strandard Ascii charecters are allowed!", http.StatusBadRequest)
-			return
-		}
-		if validators.BannerValidity(font) {
-			RenderErrorPage(w, "Error 500 Internal server error"+font+"was changed!", http.StatusInternalServerError)
-			return
-		}
+		// if validators.AsciiCharValidation(text) {
+		// 	RenderErrorPage(w, "Error 404: Only strandard Ascii charecters are allowed!", http.StatusBadRequest)
+		// 	return
+		// }
+		// if validators.BannerValidity(font) {
+		// 	RenderErrorPage(w, "Error 500 Internal server error "+font+" banner was changed!", http.StatusInternalServerError)
+		// 	return
+		// }
 		if len(text) > 100000 {
 			RenderErrorPage(w, "Request is too large!", http.StatusBadRequest)
 			return
@@ -54,7 +54,11 @@ func printHandleFunc(w http.ResponseWriter, r *http.Request) {
 		}
 		var buf bytes.Buffer
 		print.Processing(text, font, &buf)
-		res := Data{Output: buf.String(), Full: true}
+		res := Data{
+			Input:  text,
+			Output: buf.String(),
+			Full:   true,
+		}
 		tpl.Execute(w, res)
 	} else {
 		RenderErrorPage(w, "Error 405 Method not allowed", http.StatusMethodNotAllowed)

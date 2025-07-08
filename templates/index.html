@@ -10,14 +10,15 @@
     <h1>Ascii-art-web</h1>
     <form method="post" action="/print">
         <div class="radio_group">
-        <input type="radio" name="type" value="standard">
+        <!-- Adding checked with condtions to left choosen banner! -->
+        <input type="radio" name="type" value="standard" checked>
         <label >Standard</label>
         <input type="radio" name="type" value="shadow">
         <label>Shadow</label>
         <input type="radio" name="type" value="thinkertoy">
         <label>Thinkertoy</label>
         </div>
-        <textarea id="text_area" name="text" rows="5" cols="50" placeholder="Enter something"></textarea><br>
+        <textarea id="text_area" name="text" rows="5" cols="50" placeholder="Enter something">{{.Input}}</textarea><br>
         <input type="submit" value="generate">
     </form>
 
