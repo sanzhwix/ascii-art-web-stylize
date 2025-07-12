@@ -10,12 +10,14 @@
     <h1>Ascii-art-web</h1>
     <form method="post" action="/print">
         <div class="radio_group">
-        <!-- Adding checked with condtions to left choosen banner! -->
-        <input type="radio" name="type" value="standard" checked>
+        <input type="radio" name="type" value="standard"
+        {{if eq .Banner "standard"}} checked {{end}} checked>
         <label >Standard</label>
-        <input type="radio" name="type" value="shadow">
+        <input type="radio" name="type" value="shadow"
+        {{if eq .Banner "shadow"}} checked {{end}}>  
         <label>Shadow</label>
-        <input type="radio" name="type" value="thinkertoy">
+        <input type="radio" name="type" value="thinkertoy"
+        {{if eq .Banner "thinkertoy"}} checked {{end}}>
         <label>Thinkertoy</label>
         </div>
         <textarea id="text_area" name="text" rows="5" cols="50" placeholder="Enter something">{{.Input}}</textarea><br>
@@ -23,7 +25,7 @@
     </form>
 
     {{if .Full}}
-    <div class="ascii_printer">
+    <div id="ouput_div">
         <h2 class="output_text">Your output is:</h2>
         <pre class="output">{{.Output}}</pre>
     </div>

@@ -15,6 +15,9 @@ const (
 
 func BannerValidity(name string) bool {
 	hash := sha256.New()
+	// if name == "" {
+	// 	name = "standard"
+	// }
 
 	if name == "standard" || name == "shadow" || name == "thinkertoy" {
 		content, err := os.ReadFile("banners/" + name + ".txt")

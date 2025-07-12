@@ -35,3 +35,6 @@ input[type="submit"] {
   background-color: rgb(182, 182, 182);
   text-align: center;
 }
+#output_div {
+  overflow-y:20px;
+}
