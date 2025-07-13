@@ -18,7 +18,7 @@ func main() {
 	mux := http.NewServeMux()
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 	mux.HandleFunc("/", handlers.MainHandler)
-	mux.HandleFunc("/print", handlers.PrintHandleFunc)
+	mux.HandleFunc("/ascii-art", handlers.PrintHandleFunc)
 
 	fmt.Println("Server running at http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", mux))
