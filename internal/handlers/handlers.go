@@ -10,10 +10,9 @@ import (
 	validators "ascii-art/validation"
 )
 
-var (
-	Tpl *template.Template
-	mux *http.ServeMux
-)
+var Tpl *template.Template
+
+// mux *http.ServeMux
 
 type Data struct {
 	Input  string
@@ -61,7 +60,7 @@ func PrintHandleFunc(w http.ResponseWriter, r *http.Request) {
 			Full:   true,
 			Banner: font,
 		}
-		Tpl.Execute(w, res)
+		Tpl.ExecuteTemplate(w, "index.html", res)
 	} else {
 		RenderErrorPage(w, "Error 405 Method not allowed", http.StatusMethodNotAllowed)
 		return
