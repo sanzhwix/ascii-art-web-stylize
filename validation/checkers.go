@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	standardHash   = "c3ec7584fb7ecfbd739e6b3f6f63fd1fe557d2ae3e24f870730d9cf8b2559e94"
-	shadowHash     = "26b94d0b134b77e9fd23e0360bfd81740f80fb7f6541d1d8c5d85e73ee550f73"
+	standardHash   = "56d0071a1d7439793953dae6ab3086e1ba4f2947028bc3d6ac4ec475956dff62"
+	shadowHash     = "617c65ecec88bb54eeacb75aa6d8920c73bddb15a8d49f1b58cca1d63897034f"
 	thinkertoyHash = "64285e4960d199f4819323c4dc6319ba34f1f0dd9da14d07111345f5d76c3fa3"
 )
 
@@ -30,6 +30,25 @@ func BannerValidity(name string) bool {
 	}
 	return false
 }
+
+// func BannerValidity(name string) bool {
+// 	hash := sha256.New()
+
+// 	if name == "standard" || name == "shadow" || name == "thinkertoy" {
+// 		content, err := os.ReadFile("banners/" + name + ".txt")
+// 		if err != nil {
+// 			fmt.Println("❌ could not read the banner file:", err)
+// 			return false
+// 		}
+// 		hash.Write(content)
+// 		hashCalculated := hex.EncodeToString(hash.Sum(nil))
+// 		fmt.Println("🔎 HASH CALCULATED:", hashCalculated)
+// 		fmt.Println("🔐 HASH EXPECTED:", returnHash(name))
+// 		return hashCalculated == returnHash(name)
+// 	}
+// 	fmt.Println("⚠️ Unknown banner:", name)
+// 	return false
+// }
 
 func AsciiCharValidation(text string) bool {
 	for _, char := range text {

@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Ascii-art-web</h1>
-    <form method="post" action="/print">
+    <form method="post" action="/ascii-art">
         <div class="radio_group">
         <input type="radio" name="type" value="standard"
         {{if eq .Banner "standard"}} checked {{end}} checked>
@@ -20,7 +20,7 @@
         {{if eq .Banner "thinkertoy"}} checked {{end}}>
         <label>Thinkertoy</label>
         </div>
-        <textarea id="text_area" name="text" rows="5" cols="50" placeholder="Enter something">{{.Input}}</textarea><br>
+        <textarea id="text_area" name="text"  rows="5" cols="50" placeholder="Enter something" required>{{.Input}}</textarea><br>
         <input type="submit" value="generate">
     </form>
 
