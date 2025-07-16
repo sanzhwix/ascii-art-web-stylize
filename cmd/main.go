@@ -1,11 +1,12 @@
 package main
 
 import (
-	"ascii-art/internal/handlers"
 	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+
+	"ascii-art/internal/handlers"
 )
 
 func main() {
@@ -16,7 +17,16 @@ func main() {
 	}
 
 	mux := http.NewServeMux()
-	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+	fs := http.FileServer(http.Dir("./static"))
+
+	mux.Handle("/static/", http.StripPrefix("/static/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/" || r.URL.Path == "" {
+			handlers.RenderErrorPage(w, "Fuzzing is restricted!", http.StatusNotFound)
+			return
+		}
+		fs.ServeHTTP(w, r)
+	})))
+
 	mux.HandleFunc("/", handlers.MainHandler)
 	mux.HandleFunc("/ascii-art", handlers.PrintHandleFunc)
 

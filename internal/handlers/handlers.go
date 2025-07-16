@@ -25,17 +25,6 @@ type Data struct {
 	// Msg    string
 }
 
-// func MainHandler(w http.ResponseWriter, r *http.Request) {
-// // 	if r.URL.Path != "/" {
-// // 		RenderErrorPage(w, "Error 404 Page not found", http.StatusNotFound)
-// // 		return
-// // 	}
-// // 	Tpl.ExecuteTemplate(w, "index.html", nil)
-// // 	if r.Method != http.MethodGet {
-// // 		RenderErrorPage(w, "Error 405 Method Not Allowed", http.StatusMethodNotAllowed)
-// // 		return
-// // 	}
-// // }
 func MainHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		RenderErrorPage(w, "Error 404 Page not found", http.StatusNotFound)
@@ -93,15 +82,6 @@ type ErrorType struct {
 	Msg string
 }
 
-//	func RenderErrorPage(w http.ResponseWriter, msg string, statusCode int) {
-//		w.WriteHeader(statusCode)
-//		data := ErrorType{Msg: msg}
-//		err := Tpl.ExecuteTemplate(w, "errorPage.html", data)
-//		if err != nil {
-//			fmt.Println("Error with executing error page html")
-//			return
-//		}
-//	}
 func RenderErrorPage(w http.ResponseWriter, msg string, statusCode int) {
 	w.WriteHeader(statusCode)
 	data := ErrorType{Msg: msg}
