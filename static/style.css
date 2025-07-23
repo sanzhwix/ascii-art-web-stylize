@@ -1,11 +1,15 @@
 body {
-  background-image:url(../templates/image.jpg)
+  background-image:url(image/bg.png);
+  background-repeat:no-repeat;
+  background-size:cover;
 }
 h1 {
+  color:aliceblue;
   text-align: center;
   margin: 25px
 }
 .radio_group {
+  color:aliceblue;
   font-size: 22px;
   text-align:center;
   margin:20px auto;
@@ -13,6 +17,7 @@ h1 {
 #text_area {
     display: block;
     margin: 0 auto;
+    opacity: 0.7;
 }
 textarea::placeholder {
   font-size: 20px;     
@@ -41,4 +46,5 @@ input[type="submit"] {
   max-width: auto;
   margin:auto;
   text-align:center;
+  opacity: 0.5;
 }
