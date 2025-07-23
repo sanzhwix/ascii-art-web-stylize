@@ -19,8 +19,8 @@
         <input type="radio" name="type" value="thinkertoy"
         {{if eq .Banner "thinkertoy"}} checked {{end}}>
         <label>Thinkertoy</label>
+        <textarea id="text_area" name="text"  rows="5" cols="50" placeholder="Enter something" required>{{.Input}}</textarea>
         </div>
-        <textarea id="text_area" name="text"  rows="5" cols="50" placeholder="Enter something" required>{{.Input}}</textarea><br>
         <input type="submit" value="generate">
     </form>
 

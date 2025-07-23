@@ -11,11 +11,10 @@ import (
 	validators "ascii-art/validation"
 )
 
-var (
-	Tpl *template.Template
-	// mux *http.ServeMux
-	// err error
-)
+var Tpl *template.Template
+
+// mux *http.ServeMux
+// err error
 
 type Data struct {
 	Input  string
@@ -53,10 +52,10 @@ func PrintHandleFunc(w http.ResponseWriter, r *http.Request) {
 			RenderErrorPage(w, "Error 400 Bad request", http.StatusBadRequest)
 			return
 		}
-		if !validators.BannerValidity(font) {
-			RenderErrorPage(w, "Error 500 Internal server error "+font+" banner was changed!", http.StatusInternalServerError)
-			return
-		}
+		// if !validators.BannerValidity(font) {
+		// 	RenderErrorPage(w, "Error 500 Internal server error "+font+" banner was changed!", http.StatusInternalServerError)
+		// 	return
+		// }
 		if len(text) > maxInput {
 			RenderErrorPage(w, "Request is too large!", http.StatusBadRequest)
 			return
