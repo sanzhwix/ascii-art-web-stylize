@@ -1,31 +1,41 @@
-/* body {
-  background-image:url(image/Cyber\ Y2K\ Wallpaper\ Monochrome.jpg);
+body {
+  background-color:black;
+  /* background-image:url(image/main.png);
   background-repeat:no-repeat;
-  background-size:cover;
-} */
+  background-size:cover; */
+}
  /*
  1) Adding bg with TV
  2) Adding TV sound for Error rendering 
  3) Adding error for changing banner name from inspecting tab
  */
-.radio_group {
-  display:flex;
-  width:300px;
-  height:300px;
-  justify-content:center;
-  background-color:rgba(73, 216, 230, 0.5);
-}
+ .radio_group{
+  background-color:pink ;
+  position: fixed;
+  inset: 0px;
+  width: 800px;
+  height: 600px;
+  max-width: 100vw;
+  max-height: 100dvh;
+  margin: auto;
+  border-radius:30px;
+  text-align:center;
+ }
+ input[name="type"] {
+  padding:30px;
+  margin:auto;
+ }
+
 h1 {
   color:aliceblue;
   text-align: center;
   margin: 25px
 }
-.radio_group {
-  color:aliceblue;
+/* .radio_group {
   font-size: 22px;
   text-align:center;
   margin:20px auto;
-}
+} */
 #text_area {
     display: block;
     margin: 0 auto;
