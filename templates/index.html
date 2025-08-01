@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ascii-Art-Web</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.cdnfonts.com/css/pf-tempesta-seven-extended" rel="stylesheet">
 </head>
 <body>
-    <h1>Ascii-art-web</h1>
+    <h1 class="neon">Ascii-art-web</h1>
+    <div class="main_container0">
+    <div class="main_container">
     <form method="post" action="/ascii-art">
+        <div class="text_area"><textarea id="text_area" name="text"  rows="10" cols="70" placeholder="Enter something" required>{{.Input}}</textarea></div>
         <div class="radio_group">
         <input type="radio" name="type" value="standard"
         {{if eq .Banner "standard"}} checked {{end}} checked>
@@ -19,10 +23,11 @@
         <input type="radio" name="type" value="thinkertoy"
         {{if eq .Banner "thinkertoy"}} checked {{end}}>
         <label>Thinkertoy</label>
-        <textarea id="text_area" name="text"  rows="5" cols="50" placeholder="Enter something" required>{{.Input}}</textarea>
         </div>
-        <input type="submit" value="generate">
+        <div class="button_container"><button type="submit" class="generate_button">Generate</button></div>
     </form>
+    </div>
+    </div>
 
     {{if .Full}}
     <div id="output_div">

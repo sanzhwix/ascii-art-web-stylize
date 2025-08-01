@@ -1,5 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/pf-tempesta-seven-extended');
 body {
-  background-color:black;
+  background-color:#A2D2FF;
   /* background-image:url(image/main.png);
   background-repeat:no-repeat;
   background-size:cover; */
@@ -9,7 +10,86 @@ body {
  2) Adding TV sound for Error rendering 
  3) Adding error for changing banner name from inspecting tab
  */
- .radio_group{
+
+h1 {
+  font-size:60px;
+  color:#ca70ff;
+  font-family: 'PF Tempesta Seven Extended', sans-serif;
+  text-shadow:
+  0 0 5px rgb(255, 137, 249),
+  0 0 10px white,
+  0 0 20px white,
+  0 0 30px #FF00FF;
+  text-align: center;
+  margin: 25px
+}
+.main_container0 {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.main_container {
+  width:700px;
+  height:500px;
+  display:flex;
+  border:0.25em solid  #003049;
+  border-radius:1em;
+  background-color:#FFAFCC;
+  justify-content:center;
+  align-items: center;
+  .text_area {
+    resize:none;
+  }
+}
+  .button_container {
+    display:flex;
+    justify-content:flex-end;
+    margin:2em;
+  }
+  .generate_button {
+  font-size: 1.5rem;
+  font-family: "Balsamiq Sans", cursive;
+
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  background:#b2bcff;
+  color:  #111185;
+  border:  #111185 0.125em solid;
+  padding: 0.25em 1em;
+  border-radius: 0.25em;
+
+  text-shadow: 0 0 0.125em #111185, 0 0 0.45em #111185;
+
+  box-shadow: inset 0 0 0.5em 0  #111185, 0 0 0.5em 0 #111185;
+
+  position: relative;
+}
+  .generate_button::before {
+    content:"";
+    position:absolute;
+    background:#111185;
+    top:120%;
+    left:0;
+    width:100%;
+    height:100%;
+
+    transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+    filter: blur(1.5em);
+    opacity:0.5;
+  }
+  .generate_button:hover {
+    background-color:#111185;
+    color:#b2bcff;
+    border: #b2bcff 0.125em solid;
+
+  }
+  .radio_group {
+    display:flex;
+    flex-direction:row-reverse;
+    margin:2em;
+  }
+ /* .radio_group{
   background-color:pink ;
   position: fixed;
   inset: 0px;
@@ -25,18 +105,12 @@ body {
   padding:30px;
   margin:auto;
  }
-
-h1 {
-  color:aliceblue;
-  text-align: center;
-  margin: 25px
-}
 /* .radio_group {
   font-size: 22px;
   text-align:center;
   margin:20px auto;
 } */
-#text_area {
+/*#text_area {
     display: block;
     margin: 0 auto;
     opacity: 0.7;
@@ -47,12 +121,15 @@ textarea::placeholder {
   text-align: center;     
   font-style: italic;     
 }
-input[type="submit"] {
+.generate_button {
   display:block;
   margin:20px auto;
   font-size:25px;
   color:aliceblue;
   background-color:black;
+}
+.generate_button:hover {
+  background-color:green;
 }
 .standard {
   text-align:center;
@@ -69,4 +146,4 @@ input[type="submit"] {
   margin:auto;
   text-align:center;
   opacity: 0.5;
-}
+} */
