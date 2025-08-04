@@ -9,17 +9,27 @@
 </head>
 <body>
     <h1 class="neon">Ascii-art-web</h1>
-    <div class="main_container0">
-    <div class="main_container">
+    <div class="TV_container">
+    <div class="monitor" id="monitor">
+    <div class="monitorscreen">
+        {{if .Full}}
+            <div id="output_div">
+            <pre class="output">{{.Output}}</pre>
+            </div>
+        {{end}}
+        </div>
+        </div>
+    </div>
+     <div class="input_container">
     <form method="post" action="/ascii-art">
-        <div class="text_area"><textarea id="text_area" name="text"  rows="10" cols="70" placeholder="Enter something" required>{{.Input}}</textarea></div>
+        <div class="text_area"><textarea id="text_area" name="text"  rows="6" cols="70" placeholder="Enter something" required>{{.Input}}</textarea></div>
         <div class="radio_group">
         <input type="radio" name="type" value="standard"
         {{if eq .Banner "standard"}} checked {{end}} checked>
-        <label >Standard</label>
+        <label class="labels">Standard</label>
         <input type="radio" name="type" value="shadow"
         {{if eq .Banner "shadow"}} checked {{end}}>  
-        <label>Shadow</label>
+        <label class="labels">Shadow</label>
         <input type="radio" name="type" value="thinkertoy"
         {{if eq .Banner "thinkertoy"}} checked {{end}}>
         <label>Thinkertoy</label>
@@ -27,15 +37,6 @@
         <div class="button_container"><button type="submit" class="generate_button">Generate</button></div>
     </form>
     </div>
-    </div>
-
-    {{if .Full}}
-    <div id="output_div">
-        <h2 class="output_text">Your output is:</h2>
-        <pre class="output">{{.Output}}</pre>
-    </div>
-    {{end}}
-
 </body>
 </html>
 
