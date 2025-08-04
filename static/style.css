@@ -1,4 +1,10 @@
 @import url('https://fonts.cdnfonts.com/css/pf-tempesta-seven-extended');
+
+:root {
+  --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-shake: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+}
+
 body {
   background-color:#A2D2FF;
   /* background-image:url(image/main.png);
@@ -65,42 +71,17 @@ body {
 	overflow: hidden;
 }
 
-@media all and (min-width: 960px) {
-	#monitor {
-		-webkit-animation: tvflicker .2s infinite alternate; 
-		-moz-animation:    tvflicker .5s infinite alternate; 
-		-o-animation:      tvflicker .5s infinite alternate; 
-		animation:         tvflicker .5s infinite alternate; 
-	}
-
-	@-webkit-keyframes tvflicker {
-	  0%   { box-shadow: 0 0 100px 0 rgba(200,235,255,0.4); }
-	  100% { box-shadow: 0 0 95px 0 rgba(200,230,255,0.45); }
-	}
-	@-moz-keyframes tvflicker {
-	  0%   { box-shadow: 0 0 100px 0 rgba(225,235,255,0.4); }
-	  100% { box-shadow: 0 0 60px 0 rgba(200,220,255,0.6); }
-	}
-	@-o-keyframes tvflicker {
-	  0%   { box-shadow: 0 0 100px 0 rgba(225,235,255,0.4); }
-	  100% { box-shadow: 0 0 60px 0 rgba(200,220,255,0.6); }
-	}
-	@keyframes tvflicker {
-	  0%   { box-shadow: 0 0 100px 0 rgba(225,235,255,0.4); }
-	  100% { box-shadow: 0 0 60px 0 rgba(200,220,255,0.6); }
-	}
-}
-
 .input_container {
   display:flex;
   justify-content: center;
 }
 
 .radio_group {
+  font-family: 'PF Tempesta Seven Extended', sans-serif;
   display:flex;
   justify-content:flex-end;
   margin-top:1.5em;
-  font-size:1.2em;
+  font-size:1em;
 }
 
 .labels {
@@ -126,8 +107,8 @@ pre {
 }
 
 .generate_button {
-  font-size: 1.5rem;
-  font-family: "Arial", cursive;
+  font-size: 1.3em;
+  font-family: 'PF Tempesta Seven Extended', sans-serif;
 
   display: inline-block;
   cursor: pointer;

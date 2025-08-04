@@ -1,8 +1,60 @@
 body {
-    background-color:black;
+    background-color:#A2D2FF;
 }
-h1 {
-    text-align:center;
-    font-family: "Gill Sans", sans-serif;
-    color:white;
+ .neon {
+  font-size:60px;
+  color:#ca70ff;
+  font-family: 'PF Tempesta Seven Extended', sans-serif;
+  text-shadow:
+  0 0 5px rgb(255, 137, 249),
+  0 0 10px white,
+  0 0 20px white,
+  0 0 30px #FF00FF;
+  text-align: center;
+  margin: 25px
+}
+
+.msg {
+    color: #007200;
+    text-align: center;
+}
+
+ .TV_container {
+  max-width: 1024px;
+  margin: auto;
+}
+
+.monitor {
+	background: #ffafcc; 
+	position: relative;
+	border-top: 3px solid #131313; 
+	margin: 5%;
+	padding: 2% 2% 4% 2%; 
+	border-radius: 10px; 
+	border-bottom-left-radius: 50% 2%; 
+	border-bottom-right-radius: 50% 2%; 
+	transition: margin-right 1s;
+}
+
+.monitor:after {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 3%;
+	left: 36%;
+	height: .5%; 
+	width: 28%;
+	background: #ddd; 
+	border-radius: 50%; 
+	box-shadow: 0 0 3px 0 white; 
+}
+.monitorscreen {
+	position: relative;
+  background-color: #131313;
+	background-size: cover; 
+	background-position: top center;
+	height: 0; 
+	padding-bottom: 56.25%; 
+	position: relative;
+	overflow: hidden;
 }
